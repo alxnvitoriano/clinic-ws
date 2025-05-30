@@ -24,7 +24,7 @@ export const usersTableRelations = relations(usersTable, ({ many }) => ({
   usersToClinics: many(usersToClinicsTable),
 }));
 
-export const session = pgTable("session", {
+export const sessionsTable = pgTable("sessions", {
   id: text("id").primaryKey(),
   expiresAt: timestamp("expires_at").notNull(),
   token: text("token").notNull().unique(),
@@ -37,7 +37,7 @@ export const session = pgTable("session", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
 
-export const account = pgTable("account", {
+export const accountsTable = pgTable("accounts", {
   id: text("id").primaryKey(),
   accountId: text("account_id").notNull(),
   providerId: text("provider_id").notNull(),
@@ -55,7 +55,7 @@ export const account = pgTable("account", {
   updatedAt: timestamp("updated_at").notNull(),
 });
 
-export const verification = pgTable("verification", {
+export const verificationsTable = pgTable("verifications", {
   id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
@@ -76,10 +76,10 @@ export const clinicsTable = pgTable("clinics", {
 export const usersToClinicsTable = pgTable("users_to_clinics", {
   userId: text("user_id")
     .notNull()
-    .references(() => usersTable.id),
+    .references(() => usersTable.id, { onDelete: "cascade" }),
   clinicId: uuid("clinic_id")
     .notNull()
-    .references(() => clinicsTable.id),
+    .references(() => clinicsTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
@@ -111,13 +111,11 @@ export const doctorsTable = pgTable("doctors", {
   id: uuid("id").defaultRandom().primaryKey(),
   clinicId: uuid("clinic_id")
     .notNull()
-    .references(() => clinicsTable.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => clinicsTable.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
-  avatarImgUrl: text("avatar_img_url"),
+  avatarImageUrl: text("avatar_image_url"),
   // 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, 0 - Sunday
-  availableFromWeekDay: integer("available_from_week_days").notNull(),
+  availableFromWeekDay: integer("available_from_week_day").notNull(),
   availableToWeekDay: integer("available_to_week_day").notNull(),
   availableFromTime: time("available_from_time").notNull(),
   availableToTime: time("available_to_time").notNull(),
@@ -146,14 +144,12 @@ export const patientsTable = pgTable("patients", {
   id: uuid("id").defaultRandom().primaryKey(),
   clinicId: uuid("clinic_id")
     .notNull()
-    .references(() => clinicsTable.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => clinicsTable.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   email: text("email").notNull(),
   phoneNumber: text("phone_number").notNull(),
-  sex: patientSexEnum("sex").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  sex: patientSexEnum("sex").notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
@@ -175,19 +171,13 @@ export const appointmentsTable = pgTable("appointments", {
   date: timestamp("date").notNull(),
   clinicId: uuid("clinic_id")
     .notNull()
-    .references(() => clinicsTable.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => clinicsTable.id, { onDelete: "cascade" }),
   patientId: uuid("patient_id")
     .notNull()
-    .references(() => patientsTable.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => patientsTable.id, { onDelete: "cascade" }),
   doctorId: uuid("doctor_id")
     .notNull()
-    .references(() => doctorsTable.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => doctorsTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
