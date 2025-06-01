@@ -52,3 +52,5 @@ export const patientsTableColumns: ColumnDef<Patient>[] = [
     },
   },
 ];
+
+//TODO: create a new column for the patient's age

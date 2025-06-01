@@ -45,6 +45,7 @@ const PatientsTableActions = ({ patient }: PatientsTableActionsProps) => {
     },
   });
 
+  //delete patient
   const handleDeletePatientClick = () => {
     if (!patient) return;
     deletePatientAction.execute({ id: patient.id });
