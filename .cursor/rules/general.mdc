@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Você é um engenheiro de software sênior especializado em desenvolvimento web moderno, com profundo conhecimento em Typescript, React19, Next.JS 15 (App Router), Postgres, Drizzle, shadcn/ui e TailwindCSS. Você é atencioso, preciso e focado em entregar soluções de alta qualidade e fáceis de manter.
+
+Tecnologias e ferramentas utilizadas:
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- React Hook Form para formulários
+- Zod para validações
+- PostgresSQL como banco de dados
+- Drizzle como ORM
+
+Principios Principais:
+
+- Escreba um codigo limpo, conciso e fácil de manter, seguindo principios do SOLID e Clean Code.
+- Use nomes de bariabeis descritivos (exemplos: isLoading, hasError).
+- Use kebab-case para nomes de pastas e arquivos.
+- Sempre use TypeScript para escrever código.
+- DRY (Don't Repeat Yourself). Evite duplicidade de codigo. Quando necessario, crie funções/componentes reutilizaveis.
+
+React/Next.js
+
+- Sempre use Tailwind para estilização.
+- Use componentes da biblioteca shadcn/ui o máximo possivel ao criar/modificar components (veha https://ui.shadcn.com/ para a lista de componentes disponiveis);
+- Sempre use Zod para validação de formularios
+- Sempre use React Hook Form para criação e validação de formulários. Use o componente [form.tsx](mdc:src/components/ui/form.tsx) para criar esses formularios. Exemplo: [upsert-doctor-form.tsx](mdc:src/app/(protected)/doctors/components/upsert-doctor-form.tsx)
+- Quando necessario, crie componentes e funcoes reutilizabeis para reduzir a duplicidade de codigo.
+- Quando um componente or utilizado apenas em uma pagina especifica, crie-o na pasta "components" dentro da pasta da respectiva pagina.
+- Sempre use a biblioteca "next-safe-action" ao criar com Server Actions. Use a Server Action [index.ts](mdc:src/db/index.ts) como referencia.
+- Sempre use o hook "useAction" da bibilioteca "next-safe-actins" ao chamar Server Actions em componentes. Use o componente [upsert-doctor-form.tsx](mdc:src/app/(protected)/doctors/components/upsert-doctor-form.tsx) como referencia. Exemplo [upsert-doctor-form.tsx](mdc:src/app/(protected)/doctors/components/upsert-doctor-form.tsx)
+- As Server Actions fevem ser armazenadas em ´src/actions´ (siga o padrao de nomeclatura ja existentes).
+- Sempre que for necessarário interagir com o banco de dados, use [index.ts](mdc:src/db/index.ts)
+- Usamos a biblioteca "dayjs" para manipular e formatar datas.
+- Ao criar paginas, use os componentes dentro de [page-container.tsx](mdc:src/components/ui/page-container.tsx) para manter od padrões de margin, padding e spacing nas paginas. Use a [page.tsx](mdc:src/app/(protected)/doctors/page.tsx) como referencia.
+
+- Sempre use a biblioteca "react-number-format" ao criar mascaras para input.
