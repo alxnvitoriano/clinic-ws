@@ -24,6 +24,7 @@ export const patientsTableColumns: ColumnDef<Patient>[] = [
     accessorKey: "phoneNumber",
     header: "Telefone",
     cell: (params) => {
+      //see the patient phone number
       const patient = params.row.original;
       const phoneNumber = patient.phoneNumber;
       if (!phoneNumber) return "";
